@@ -1,343 +1,306 @@
 @extends('layouts.app')
+@section('title', 'About us - Finesse By Design')
+
+@push('styles')
+<style>
+    /* ============================================================
+       ABOUT US — CLEAN & SHARP BORDERLESS DESIGN
+    ============================================================ */
+    .about-clean-section {
+        background: #F8FAFC;
+        padding: 30px 0 55px;
+    }
+
+    /* Natural Text Flow (Clean, Sharp, Unbolded) */
+    .about-flow-text {
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        color: #475569;
+        line-height: 1.85;
+        text-align: justify;
+        text-justify: inter-word;
+        margin-bottom: 0;
+    }
+
+    /* Clean & Sharp Surface Card - ZERO BORDERS */
+    .about-sharp-card {
+        background: #FFFFFF;
+        border: none !important;
+        border-radius: 12px;
+        padding: 28px 32px;
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+        margin-bottom: 20px;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .about-sharp-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+    }
+
+    /* Split Cards for Hospitality & Global Presence - ZERO BORDERS */
+    .about-split-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .about-sharp-split-card {
+        background: #FFFFFF;
+        border: none !important;
+        border-radius: 12px;
+        padding: 24px 26px;
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .about-sharp-split-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+    }
+
+    .about-sharp-icon {
+        width: 44px;
+        height: 44px;
+        border: none !important;
+        border-radius: 10px;
+        background: #EDF6FB;
+        color: var(--kkt-primary, #0B6FAE);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+        transition: all 0.25s ease;
+    }
+
+    .about-sharp-split-card:hover .about-sharp-icon {
+        background: var(--kkt-gradient);
+        color: #FFFFFF;
+    }
+
+    /* Subheading - ZERO BORDERS */
+    .about-sharp-subheading {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: #0F172A;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-bottom: 16px;
+        border: none !important;
+    }
+
+    /* 7 Customization Services Grid - ZERO BORDERS */
+    .about-services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+        margin-bottom: 24px;
+    }
+
+    .about-sharp-tile {
+        background: #F8FAFC;
+        border: none !important;
+        border-radius: 10px;
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        transition: all 0.25s ease;
+    }
+
+    .about-sharp-tile:hover {
+        background: #FFFFFF;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .about-sharp-tile-icon {
+        width: 36px;
+        height: 36px;
+        border: none !important;
+        border-radius: 8px;
+        background: #EDF6FB;
+        color: var(--kkt-primary, #0B6FAE);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+        transition: all 0.25s ease;
+    }
+
+    .about-sharp-tile:hover .about-sharp-tile-icon {
+        background: var(--kkt-gradient);
+        color: #FFFFFF;
+    }
+
+    .about-sharp-tile-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 13.5px;
+        font-weight: 500;
+        color: #1E293B;
+        margin: 0;
+        line-height: 1.35;
+        transition: color 0.2s ease;
+    }
+
+    .about-sharp-tile:hover .about-sharp-tile-title {
+        color: var(--kkt-primary, #0B6FAE);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+        .about-sharp-card {
+            padding: 22px 22px;
+        }
+        .about-split-row {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .about-clean-section {
+            padding: 20px 0 35px;
+        }
+        .about-sharp-card {
+            padding: 18px 16px;
+            border-radius: 10px;
+        }
+        .about-sharp-split-card {
+            padding: 18px 16px;
+            border-radius: 10px;
+            gap: 12px;
+        }
+        .about-flow-text {
+            font-size: 14px;
+            line-height: 1.7;
+        }
+        .about-services-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+    }
+</style>
+@endpush
 
 @section('content')
-    {{-- =========================
-        BREADCRUMB
-    ========================== --}}
-    <div class="breadcrumb-kkt">
-        <div class="container">
-            <nav>
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('home') }}">Home</a>
-                    </li>
+<div class="breadcrumb-kkt">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0" style="font-size: 0.84rem;">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-                    <li class="breadcrumb-item active">
-                        About Us
-                    </li>
-                </ol>
-            </nav>
+<section class="about-clean-section">
+    <div class="container">
+        {{-- Hero Header (Matched to Home Page sec-main-heading & sec-heading-accent) --}}
+        <div class="text-center mb-4">
+            <h1 class="sec-main-heading mb-0">
+                About <span class="sec-heading-accent">us</span>
+            </h1>
+        </div>
+
+        {{-- Section 1: Main Story Card (Clean, Sharp, Borderless) --}}
+        <div class="about-sharp-card">
+            <p class="about-flow-text">
+                Finesse By Design is a trusted name in the manufacturing of premium brass and silver-plated articles, bringing exceptional craftsmanship and quality to clients across India and the world. With over 43 years of manufacturing excellence, we are a renowned export house committed to creating timeless products that blend elegance, durability, and superior workmanship. As a direct manufacturer, we eliminate middlemen, offering export-quality products at competitive factory prices. Every article is meticulously handcrafted by skilled artisans and undergoes a stringent 7-step quality assurance process, ensuring perfection in every piece. Our product range is available in Premium Brass, Silver-Plated, Nickel-Plated, Matte, and Shine Finishes, with complete customization options including tailor-made designs and personalized logos to meet the unique requirements of our clients.
+            </p>
+        </div>
+
+        {{-- Section 2: Split Cards for Hospitality & Global Presence (Clean, Sharp, Borderless) --}}
+        <div class="about-split-row">
+            {{-- Hospitality & Bulk Orders --}}
+            <div class="about-sharp-split-card">
+                <div class="about-sharp-icon">
+                    <i class="bi bi-building"></i>
+                </div>
+                <p class="about-flow-text">
+                    We proudly serve both retail and bulk orders with flexible MOQs, catering to hospitality, corporate, gifting, and luxury lifestyle segments. Our commitment to quality has made us a regular supplier of premium tableware to prestigious hospitality groups, including ITC Hotels and Taj Hotels.
+                </p>
+            </div>
+
+            {{-- Global Presence --}}
+            <div class="about-sharp-split-card">
+                <div class="about-sharp-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+                <p class="about-flow-text">
+                    With a strong global presence, we export our handcrafted creations to countries such as the United Kingdom, Germany, France, Spain, Italy, New Zealand, and South Africa, while continuing to deliver excellence across the domestic market.
+                </p>
+            </div>
+        </div>
+
+        {{-- Section 3: Customisable Excellence (Clean, Sharp, Borderless) --}}
+        <div class="about-sharp-card mb-0">
+            <div class="text-center mb-3">
+                <h2 class="sec-main-heading mb-0">
+                    Customisable <span class="sec-heading-accent">Excellence</span>
+                </h2>
+            </div>
+
+            <p class="about-flow-text mb-4">
+                At Finesse By Design, customization is at the heart of what we do. We offer a wide range of personalization options to help businesses, hotels, brands, and individuals create truly distinctive products.
+            </p>
+
+            <h3 class="about-sharp-subheading">Our Customization Services Include:</h3>
+
+            {{-- 7 Services Grid (Clean, Sharp, Borderless) --}}
+            <div class="about-services-grid">
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-award"></i></div>
+                    <h4 class="about-sharp-tile-title">Custom Logo Branding</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-pen"></i></div>
+                    <h4 class="about-sharp-tile-title">Name Engraving</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-lightning-charge"></i></div>
+                    <h4 class="about-sharp-tile-title">Precision Etching</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-layers"></i></div>
+                    <h4 class="about-sharp-tile-title">Elegant Embossing</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-type"></i></div>
+                    <h4 class="about-sharp-tile-title">Monogram &amp; Personalized Designs</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-briefcase"></i></div>
+                    <h4 class="about-sharp-tile-title">Corporate Branding Solutions</h4>
+                </div>
+
+                <div class="about-sharp-tile">
+                    <div class="about-sharp-tile-icon"><i class="bi bi-sliders"></i></div>
+                    <h4 class="about-sharp-tile-title">Product Customization Available</h4>
+                </div>
+            </div>
+
+            {{-- Closing Vision Paragraph --}}
+            <div class="pt-3">
+                <p class="about-flow-text">
+                    From design modifications and size adjustments to exclusive finishes and bespoke creations, we tailor each product to match your specific requirements and brand identity. Whether you need luxury hospitality ware, corporate gifting solutions, or signature branded collections, our team transforms your vision into beautifully crafted, handcrafted pieces that leave a lasting impression.
+                </p>
+            </div>
         </div>
     </div>
-
-
-
-    {{-- =========================
-    ABOUT SECTION
-========================== --}}
-    <section class="about-hero py-5">
-        <div class="container">
-
-            <div class="row align-items-center g-5">
-
-                {{-- Left Content --}}
-                <div class="col-lg-7">
-
-                    <span class="about-badge">
-                        About Gastro Wellness
-                    </span>
-
-                    <h1 class="about-title mt-3">
-                        Gastro Wellness Pvt. Ltd.
-                    </h1>
-
-                    <p class="about-subtitle">
-                        Your Trusted Partner in Digestive, Liver & Anorectal Health
-                    </p>
-
-                    <p class="about-text">
-                        <strong>Gastro Wellness Pvt. Ltd.</strong> is a healthcare-focused
-                        pharmaceutical and wellness company dedicated to improving the lives
-                        of patients suffering from anorectal disorders, gastrointestinal
-                        diseases, and liver-related conditions.
-                    </p>
-
-                    <p class="about-text">
-                        Backed by more than
-                        <strong>22 years of clinical excellence</strong> and the trusted
-                        foundation of <strong>Centre for Piles and Fistula</strong>, our
-                        mission is to provide effective, trusted, and doctor-recommended
-                        healthcare solutions that improve quality of life and promote
-                        long-term digestive wellness.
-                    </p>
-
-
-                </div>
-
-
-                {{-- Right Card --}}
-                <div class="col-lg-5">
-
-                    <div class="about-card">
-
-                        <h3>
-                            Our Healthcare Focus
-                        </h3>
-
-                        <div class="row g-3 mt-2">
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Piles (Hemorrhoids)
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Fissure & Fistula
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Constipation
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Digestive Disorders
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Acidity & Gas
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Liver health and Wellness 
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                    Fatty Liver
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="feature-box">
-                                   Gut Health & Wellness
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-
-            {{-- Mission --}}
-            <div class="row mt-5">
-
-                <div class="col-lg-12">
-
-                    <div class="mission-box">
-
-                        <h2>
-                            Why Gut Health Matters
-                        </h2>
-
-                        <p class="about-text">
-                            We believe that <strong>every disease begins with the gut.</strong>
-                            A healthy digestive system is the foundation of a healthy life. Your gut
-                            is home to trillions of beneficial microorganisms that play a vital role
-                            in digestion, immunity, metabolism, and overall physical and emotional wellness.
-                        </p>
-
-                        <p class="about-text mb-0">
-                            When your digestive system is balanced, your body functions more efficiently,
-                            helping you feel healthier, more energetic, and mentally stronger every day.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="row mt-5">
-
-                <div class="col-lg-12">
-
-                    <div class="mission-box">
-
-                        <h2>
-                            The Gut–Brain Connection
-                        </h2>
-
-                        <p class="about-text">
-                            Modern scientific research has established the powerful
-                            <strong>Gut-Brain Axis</strong>—a continuous communication
-                            between your digestive system and your brain.
-                        </p>
-
-                        <p class="about-text">
-                            A balanced gut microbiome can positively influence
-                            <strong>mood, stress response, sleep quality, cognitive function,</strong>
-                            and overall mental well-being. Caring for your gut means caring for your entire body.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="mt-4">
-
-                <div class="about-card">
-
-                    <h3>
-                        Benefits of a Healthy Gut
-                    </h3>
-
-                    <div class="row g-3 mt-2">
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Stronger Immunity
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                             Better Digestion
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Improved Metabolism
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Weight Management
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Higher Energy Levels
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                              Reduced Inflammation
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Better Sleep
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="feature-box">
-                                Mental Wellness
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            {{-- Mission --}}
-            <div class="row mt-5">
-
-                <div class="col-lg-12">
-
-                    <div class="mission-box">
-
-                        <h2>
-                            Our Mission
-                        </h2>
-
-                        <p>
-                            At <strong>Gastro Wellness Pvt. Ltd.</strong>, through innovation,
-                            clinical expertise, and an unwavering commitment to patient care,
-                            we strive to deliver healthcare solutions that support healing,
-                            provide comfort, and promote long-term wellness.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            {{-- Promise --}}
-            <div class="row mt-4">
-
-                <div class="col-lg-12">
-
-
-                    <div class="promise-box text-center">
-
-                        <h2>Our Promise</h2>
-
-                        <h4 class="mt-3">
-                            Your Health, Our Priority.
-                        </h4>
-
-                        <h4 class="text-warning fw-bold">
-                            Your Wellness, Our Mission.
-                        </h4>
-
-                        
-
-                        <div class="row mt-4 justify-content-center">
-
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="feature-box">
-                                    💚 Healthy Gut
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="feature-box">
-                                    💪 Healthy Body
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-12">
-                                <div class="feature-box">
-                                    🧠 Healthy Mind
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <p class="about-text text-white mt-4 mb-0">
-                            We believe that true wellness starts from within. By combining trusted
-                            medical expertise, scientifically developed healthcare products, and
-                            patient-focused care, we aim to help every individual live a healthier,
-                            happier, and more active life.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
+</section>
 @endsection

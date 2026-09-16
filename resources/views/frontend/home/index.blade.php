@@ -172,12 +172,7 @@
         $homeFeatured = (isset($featuredProducts) && $featuredProducts->count()) ? $featuredProducts : $trendingProducts;
     @endphp
     @if ($homeFeatured && $homeFeatured->count())
-        <section class="py-5" style="
-            background: radial-gradient(circle at 80% 20%, rgba(17,140,196,0.05), transparent 45%),
-                        radial-gradient(circle at 10% 80%, rgba(11,111,174,0.04), transparent 40%),
-                        linear-gradient(180deg, #FFFFFF 0%, #F6F9FB 100%);
-            position: relative;
-        ">
+        <section class="py-5" style="background: #EAF2F8;">
             <div class="container">
                 <div class="position-relative mb-4">
                     <div class="section-luxury-header mb-0">
@@ -221,7 +216,7 @@
    
     {{-- Flash Sale / Special Offers --}}
     @if ($saleProducts->count())
-        <section class="py-5" style="background: #FFFFFF;">
+        <section class="py-5" style="background: #FFF8F0;">
             <div class="container"> 
                 <div class="section-luxury-header mb-4">
                     <div class="section-luxury-header-content">
@@ -249,10 +244,7 @@
 
     {{-- New Arrivals --}}
     @if ($newArrivals->count())
-        <section class="py-5" style="
-            background: radial-gradient(circle at top right, rgba(17,140,196,.05), transparent 30%),
-                        linear-gradient(180deg, #FFFFFF 0%, #F6F9FB 100%);
-        ">
+        <section class="py-5" style="background: #FFFAFA;">
             <div class="container">
                 <div class="section-luxury-header mb-4">
                     <div class="section-luxury-header-content">
@@ -281,7 +273,7 @@
 
     {{-- Best Sellers --}}
     @if ($bestSellers->count())
-        <section class="py-5" style="background: #FFFFFF;">
+        <section class="py-5" style="background: #FAF4EB;">
             <div class="container">
                 <div class="section-luxury-header mb-4">
                     <div class="section-luxury-header-content">

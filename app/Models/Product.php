@@ -58,6 +58,8 @@ class Product extends Model
     public function images(): HasMany        { return $this->hasMany(ProductImage::class)->orderBy('sort_order'); }
     public function primaryImage(): HasMany  { return $this->hasMany(ProductImage::class)->where('is_primary', true); }
     public function variants(): HasMany      { return $this->hasMany(ProductVariant::class)->where('is_active', true); }
+    // Unscoped — used by the admin panel so inactive variants can still be edited/reactivated.
+    public function allVariants(): HasMany   { return $this->hasMany(ProductVariant::class); }
     public function reviews(): HasMany       { return $this->hasMany(Review::class)->where('status', 'approved'); }
     public function orderItems(): HasMany    { return $this->hasMany(OrderItem::class); }
 

@@ -39,6 +39,20 @@ class ProductRequest extends FormRequest
             'meta_title'        => 'nullable|string|max:160',
             'meta_description'  => 'nullable|string|max:300',
             'meta_keywords'     => 'nullable|string',
+
+            // Variants (Brass / Silver-Plated, sizes, etc.)
+            'variants'                  => 'nullable|array',
+            'variants.*.id'             => 'nullable|integer|exists:product_variants,id',
+            'variants.*.sku'            => 'nullable|string|max:100',
+            'variants.*.color'          => 'nullable|string|max:100',
+            'variants.*.color_hex'      => 'nullable|string|max:20',
+            'variants.*.size'           => 'nullable|string|max:100',
+            'variants.*.price'          => 'nullable|numeric|min:0',
+            'variants.*.sale_price'     => 'nullable|numeric|min:0',
+            'variants.*.stock'          => 'nullable|integer|min:0',
+            'variants.*.is_active'      => 'nullable|boolean',
+            'deleted_variant_ids'       => 'nullable|array',
+            'deleted_variant_ids.*'     => 'integer|exists:product_variants,id',
         ];
     }
 

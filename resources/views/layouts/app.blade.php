@@ -38,6 +38,15 @@
     @stack('styles')
     <style>
         /* ============================================================
+           NAVBAR SHADOW & PURE WHITE BACKGROUND
+        ============================================================ */
+        .navbar.navbar-kkt {
+            background: #FFFFFF !important;
+            border-bottom: 1px solid #E8EDF2 !important;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        /* ============================================================
            LUXURY SPLIT-PANE MEGA DROPDOWN (DESKTOP)
         ============================================================ */
         .nav-item.dropdown-mega {
@@ -449,7 +458,7 @@
             font-family: 'Poppins', sans-serif !important;
             font-size: 12px !important;
             font-weight: 600 !important;
-            border-radius: 50px !important;
+            border-radius: 10px !important;
             padding: 6px 18px !important;
         }
 
@@ -746,7 +755,7 @@
                            role="button"
                            id="productsMenuToggle"
                            aria-expanded="false">
-                            <span>Products</span>
+                            <span>Categories</span>
                         </a>
 
                         {{-- SINGLE UNIFIED DROPDOWN MENU FOR DESKTOP & MOBILE --}}
@@ -887,17 +896,11 @@
                         </div>
                     </li>
 
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('shop') }}">
-                            Shop
+                            Shops
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('blog.index') }}">
-                            Blogs
-                        </a>
-                    </li> --}}
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">
@@ -1046,14 +1049,54 @@
   <footer class="gw-footer">
 
     {{-- Trust badges --}}
-    <div class="gw-trust d-none d-md-flex">
+    <div class="gw-trust">
         <div class="container">
             <div class="gw-trust-row">
-                <div class="gw-trust-item"><i class="bi bi-patch-check-fill"></i><span>100% Genuine Medicines</span></div>
-                <div class="gw-trust-item"><i class="bi bi-award-fill"></i><span>WHO-GMP Certified</span></div>
-                <div class="gw-trust-item"><i class="bi bi-shield-lock-fill"></i><span>Secure SSL Payment</span></div>
-                <div class="gw-trust-item"><i class="bi bi-shield-check"></i><span>Safe & Effective</span></div>
-                <div class="gw-trust-item"><i class="bi bi-heart-pulse-fill"></i><span>Trusted Healthcare Brand</span></div>
+                <div class="gw-trust-item">
+                    <div class="gw-trust-icon-wrap">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div class="gw-trust-text">
+                        <h6 class="gw-trust-title">100% Handcrafted</h6>
+                        <span class="gw-trust-sub">Premium Brass &amp; Silver Plated</span>
+                    </div>
+                </div>
+                <div class="gw-trust-item">
+                    <div class="gw-trust-icon-wrap">
+                        <i class="bi bi-gem"></i>
+                    </div>
+                    <div class="gw-trust-text">
+                        <h6 class="gw-trust-title">Authentic &amp; Vintage Designs</h6>
+                        <span class="gw-trust-sub">Timeless Metal Handicrafts</span>
+                    </div>
+                </div>
+                <div class="gw-trust-item">
+                    <div class="gw-trust-icon-wrap">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                    <div class="gw-trust-text">
+                        <h6 class="gw-trust-title">Safe &amp; Secure Packaging</h6>
+                        <span class="gw-trust-sub">Delivered with Care</span>
+                    </div>
+                </div>
+                <div class="gw-trust-item">
+                    <div class="gw-trust-icon-wrap">
+                        <i class="bi bi-gift"></i>
+                    </div>
+                    <div class="gw-trust-text">
+                        <h6 class="gw-trust-title">Perfect for Gifting</h6>
+                        <span class="gw-trust-sub">Weddings, Corporate &amp; More</span>
+                    </div>
+                </div>
+                <div class="gw-trust-item">
+                    <div class="gw-trust-icon-wrap">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <div class="gw-trust-text">
+                        <h6 class="gw-trust-title">Quality You Can Trust</h6>
+                        <span class="gw-trust-sub">Handmade with Excellence</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1070,7 +1113,7 @@
                         <img src="{{ base_public_url('assets/img/kkt.png') }}" alt="{{ config('app.name') }}">
                     @endif
                 </a>
-                <p>{{ setting('site_tagline', 'Gastro Wellness Pvt. Ltd. is your trusted partner for genuine medicines, gastro care, and wellness products — delivered safely across India.') }}</p>
+                <p>{{ setting('site_tagline', 'Finesse By Design is a trusted manufacturer and exporter of premium brass, silver-plated, and luxury handcrafted tableware — delivering timeless elegance across India and worldwide.') }}</p>
             </div>
 
             {{-- Quick Links --}}
@@ -1140,7 +1183,7 @@
     <div class="gw-bottom">
         <div class="container">
             <div class="gw-bottom-inner">
-                <div class="gw-copy">© {{ date('Y') }} {{ setting('site_name', 'Gastro Wellness Pvt. Ltd.') }}. All Rights Reserved.</div>
+                <div class="gw-copy">© {{ date('Y') }} {{ setting('site_name', 'Finesse By Design') }}. All Rights Reserved.</div>
 
                 
         {{-- Social --}}
@@ -1215,12 +1258,23 @@
             if (!$(e.target).closest('form').length) $('#search-results-dropdown').addClass('d-none');
         });
 
-        // Add to Cart AJAX
-        $(document).on('click', '.btn-add-to-cart', function(e) {
+        // Shared helper: keep the navbar cart badges (mobile + desktop) in sync
+        // instantly, without needing a page refresh. Any add/remove/update flow
+        // anywhere in the app should call this with the fresh count from the server.
+        window.updateCartCount = function(count) {
+            $('#mobile-cart-count').text(count);
+            $('#desktop-cart-count').text(count);
+        };
+
+        // Add to Cart AJAX (product listing / category / wishlist cards).
+        // The product detail page (products/show.blade.php) has its own handler
+        // with a loading spinner on the button, so we skip delegating to this one
+        // there to avoid submitting the request twice.
+        $(document).on('click', '.btn-add-to-cart:not(#main-add-to-cart)', function(e) {
             e.preventDefault();
             const btn = $(this);
-            const productId = btn.data('product-id');
-            const variantId = btn.data('variant-id') || null;
+            const productId = btn.attr('data-product-id');
+            const variantId = btn.attr('data-variant-id') || null;
             const qty = parseInt($('#qty-input').val() || 1);
 
             $.post('{{ route('cart.add') }}', {
@@ -1230,11 +1284,11 @@
                 })
                  .done(res => {
                     if (res.success) {
-                         $('#mobile-cart-count').text(res.count);
-                            $('#desktop-cart-count').text(res.count);
+                        window.updateCartCount(res.count);
                         showToast(res.message, 'success');
                     }
-                });
+                })
+                .fail(() => showToast('Failed to add product to cart', 'danger'));
         });
 
         // Wishlist toggle

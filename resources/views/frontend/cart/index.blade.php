@@ -38,6 +38,7 @@
                             @foreach($items as $item)
                             <tr id="cart-row-{{ $item->id }}">
                                 <td style="padding:16px;">
+                                    @if($item->product)
                                     <div class="d-flex align-items-center gap-3">
                                         <img src="{{ $item->product->thumbnail_url }}" style="width:60px;height:60px;object-fit:cover;border-radius:10px;">
                                         <div>
@@ -47,6 +48,9 @@
                                             @endif
                                         </div>
                                     </div>
+                                    @else
+                                    <span class="text-muted">Product no longer available</span>
+                                    @endif
                                 </td>
                                 <td style="padding:16px;font-weight:700;color:var(--kkt-primary);">₹{{ number_format($item->effective_price, 2) }}</td>
                                 <td style="padding:16px;">
@@ -140,7 +144,9 @@ function removeCart(id) {
         .done(res => {
             if (res.success) {
                 document.getElementById('cart-row-' + id)?.remove();
-                $('#cart-count').text(res.count);
+                if (typeof window.updateCartCount === 'function') {
+                    window.updateCartCount(res.count);
+                }
                 if (res.count === 0) location.reload();
             }
         });
