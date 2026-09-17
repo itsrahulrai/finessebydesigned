@@ -922,12 +922,12 @@
                 {{-- Price & Stock Pill --}}
                 <div class="pdp-price-row">
                     <span id="display-price" class="pdp-price-current">
-                        ₹{{ number_format($product->effective_price, 2) }}
+                        ₹ {{ number_format($product->effective_price) }}
                     </span>
 
                     @if($product->sale_price && $product->sale_price < $product->price)
                     <span class="pdp-price-old">
-                        ₹{{ number_format($product->price, 2) }}
+                        ₹ {{ number_format($product->price) }}
                     </span>
                     <span class="pdp-discount-pill">
                         {{ $product->discount_percent }}% OFF

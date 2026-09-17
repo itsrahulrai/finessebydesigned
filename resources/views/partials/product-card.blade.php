@@ -99,9 +99,9 @@
             {{-- Price & Cart Action Row (Same Line) --}}
             <div class="prod-action-row">
                 <div class="prod-price-block">
-                    <span class="prod-price-current">₹ {{ number_format($product->effective_price, 2) }}</span>
+                    <span class="prod-price-current">₹ {{ number_format($product->effective_price) }}</span>
                     @if($product->sale_price && $product->sale_price < $product->price)
-                        <span class="prod-price-original">₹ {{ number_format($product->price, 2) }}</span>
+                        <span class="prod-price-original">₹ {{ number_format($product->price) }}</span>
                     @endif
                 </div>
 

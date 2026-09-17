@@ -307,46 +307,88 @@
                         linear-gradient(180deg, #FFFFFF 0%, #F6F9FB 100%);
         ">
             <div class="container">
-                <div class="section-luxury-header mb-4">
-                    <div class="section-luxury-header-content">
-                        <div class="sec-explore-tag">
-                            <span class="tag-line"></span>
-                            <span class="tag-text">STORIES & INSPIRATION</span>
-                            <span class="tag-line"></span>
+                <div class="position-relative mb-4">
+                    <div class="section-luxury-header mb-0">
+                        <div class="section-luxury-header-content">
+                            <div class="sec-explore-tag">
+                                <span class="tag-line"></span>
+                                <span class="tag-text">STORIES & INSPIRATION</span>
+                                <span class="tag-line"></span>
+                            </div>
+                            <h2 class="sec-main-heading">
+                                Latest <span class="sec-heading-accent">Articles</span>
+                            </h2>
+                            <p class="sec-desc">
+                                Explore stories of timeless craftsmanship, design inspiration, and luxury living.
+                            </p>
                         </div>
-                        <h2 class="sec-main-heading">
-                            Latest <span class="sec-heading-accent">Articles</span>
-                        </h2>
-                        <p class="sec-desc">
-                            Explore stories of timeless craftsmanship, design inspiration, and luxury living.
-                        </p>
+                    </div>
+                    <div class="d-none d-md-block position-absolute end-0 top-50 translate-middle-y">
+                        <a href="{{ route('blog.index') }}" class="btn-luxury-viewall">
+                            <span>View All</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="row g-3">
+
+                <div class="row g-4">
                     @foreach ($latestBlogs as $blog)
-                        <div class="col-md-4">
-                            <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none">
-                                <div style="border-radius:18px;overflow:hidden;border:1px solid #E8EDF2;background:#fff;transition:all .3s ease;box-shadow:0 4px 16px rgba(21,27,33,.05);"
-                                    onmouseover="this.style.boxShadow='0 12px 30px rgba(11,111,174,.15)';this.style.transform='translateY(-6px)'"
-                                    onmouseout="this.style.boxShadow='0 4px 16px rgba(21,27,33,.05)';this.style.transform='none'">
-                                    <img src="{{ $blog->thumbnail_url }}"
-                                        style="width:100%;height:200px;object-fit:cover;" alt="{{ $blog->title }}">
-                                    <div class="p-4">
-                                        <div
-                                            style="font-size:.75rem;color:var(--kkt-secondary);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;">
-                                            {{ $blog->published_at?->format('d M Y') }}</div>
-                                        <h5 style="font-family:'Playfair Display', Georgia, serif;font-weight:700;color:var(--kkt-dark);margin-bottom:8px;">
-                                            {{ Str::limit($blog->title, 60) }}</h5>
-                                        <p style="font-size:.86rem;color:#52606B;line-height:1.6;">{{ Str::limit($blog->excerpt, 100) }}
-                                        </p>
-                                        <span style="color:var(--kkt-primary);font-size:.85rem;font-weight:600;display:inline-flex;align-items:center;gap:4px;">
-                                            Read Story <i class="bi bi-arrow-right"></i>
+                        <div class="col-lg-4 col-md-6">
+                            <a href="{{ route('blog.show', $blog->slug) }}" class="text-decoration-none h-100 d-block">
+                                <article class="luxury-article-card">
+                                    {{-- Image Wrapper --}}
+                                    <div class="article-img-wrap">
+                                        <img src="{{ $blog->thumbnail_url }}"
+                                             alt="{{ $blog->title }}"
+                                             loading="lazy"
+                                             onerror="this.onerror=null;this.src='{{ asset('images/no-image.png') }}';">
+
+                                        {{-- Category Badge --}}
+                                        <span class="article-cat-badge">
+                                            {{ $blog->blogCategory->name ?? 'Craftsmanship' }}
+                                        </span>
+
+                                        {{-- Published Date --}}
+                                        <span class="article-date-badge">
+                                            <i class="bi bi-calendar3"></i>
+                                            {{ $blog->published_at?->format('d M Y') }}
                                         </span>
                                     </div>
-                                </div>
+
+                                    {{-- Body Content --}}
+                                    <div class="article-body">
+                                        <div class="article-meta-row">
+                                            <span><i class="bi bi-clock-history me-1"></i> 3 min read</span>
+                                            <span>•</span>
+                                            <span><i class="bi bi-gem me-1"></i> Luxury Living</span>
+                                        </div>
+
+                                        <h3 class="article-title" title="{{ $blog->title }}">
+                                            {{ Str::limit($blog->title, 55) }}
+                                        </h3>
+
+                                        <p class="article-excerpt">
+                                            {{ Str::limit($blog->excerpt, 105) }}
+                                        </p>
+
+                                        <div class="article-card-footer">
+                                            <span class="article-read-text">Read Full Story</span>
+                                            <span class="article-arrow-btn">
+                                                <i class="bi bi-arrow-right"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </article>
                             </a>
                         </div>
                     @endforeach
+                </div>
+
+                <div class="text-center mt-4 d-md-none">
+                    <a href="{{ route('blog.index') }}" class="btn-luxury-viewall">
+                        <span>View All Articles</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </section>

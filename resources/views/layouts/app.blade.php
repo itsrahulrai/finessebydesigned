@@ -1247,7 +1247,7 @@
                 <a href="${p.url}" class="search-item">
                     <img src="${p.image}" alt="${p.name}">
                     <div><div style="font-size:.88rem;font-weight:600;">${p.name}</div>
-                    <div style="color:var(--kkt-primary);font-weight:700;">₹${parseFloat(p.price).toFixed(2)}</div></div>
+                    <div style="color:var(--kkt-primary);font-weight:700;">₹ ${Math.round(parseFloat(p.price)).toLocaleString('en-IN')}</div></div>
                 </a>`).join('');
                     $d.html(html).removeClass('d-none');
                 });

@@ -24,6 +24,7 @@ class Blog extends Model
 
     public function admin(): BelongsTo        { return $this->belongsTo(Admin::class); }
     public function blogCategory(): BelongsTo { return $this->belongsTo(BlogCategory::class); }
+    public function category(): BelongsTo     { return $this->belongsTo(BlogCategory::class, 'blog_category_id'); }
 
     public function getThumbnailUrlAttribute(): string
     {

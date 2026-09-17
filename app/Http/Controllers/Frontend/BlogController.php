@@ -19,11 +19,30 @@ class BlogController extends Controller
 
     public function show(string $slug)
     {
-        $blog    = Blog::with(['blogCategory','admin'])->published()->where('slug', $slug)->firstOrFail();
+        $blog = Blog::with(['blogCategory', 'admin'])->published()->where('slug', $slug)->firstOrFail();
         $blog->increment('views');
-        $related = Blog::published()->where('id', '!=', $blog->id)
-            ->where('blog_category_id', $blog->blog_category_id)
-            ->latest('published_at')->take(3)->get();
-        return view('frontend.blog.show', compact('blog', 'related'));
+
+        $categories = BlogCategory::where('is_active', true)
+            ->withCount(['blogs' => fn($q) => $q->published()])
+            ->get();
+        if ($categories->isEmpty()) {
+            $categories = BlogCategory::withCount(['blogs' => fn($q) => $q->published()])->get();
+        }
+
+        $latestBlogs = Blog::with('blogCategory')
+            ->published()
+            ->where('id', '!=', $blog->id)
+            ->latest('published_at')
+            ->take(5)
+            ->get();
+
+        $related = Blog::published()
+            ->where('id', '!=', $blog->id)
+            ->when($blog->blog_category_id, fn($q) => $q->where('blog_category_id', $blog->blog_category_id))
+            ->latest('published_at')
+            ->take(3)
+            ->get();
+
+        return view('frontend.blog.show', compact('blog', 'categories', 'latestBlogs', 'related'));
     }
 }
