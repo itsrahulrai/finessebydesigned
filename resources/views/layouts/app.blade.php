@@ -670,10 +670,10 @@
             <span class="follow-label">
                 Follow Us
             </span>
-            <a href="https://www.facebook.com/CenterForPilesandFistula">
+            <a href="https://www.facebook.com/">
                 <i class="bi bi-facebook"></i>
             </a>
-            <a href="https://www.instagram.com/cpf_centreforpiles">
+            <a href="https://www.instagram.com/">
                 <i class="bi bi-instagram"></i>
             </a>
             <a href="#">
@@ -901,6 +901,12 @@
                             Shops
                         </a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('blog.index') }}">
+                            Blogs
+                        </a>
+                    </li>
+
 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contact') }}">
@@ -1191,10 +1197,10 @@
                 <div class="gw-pay">
                     
             <div class="gw-social">
-                <a href="https://www.facebook.com/CenterForPilesandFistula"><i class="bi bi-facebook"></i></a>
-                <a href="https://www.instagram.com/cpf_centreforpiles"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/"><i class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com/"><i class="bi bi-instagram"></i></a>
                 <a href="#"><i class="bi bi-linkedin"></i></a>
-                <a href="https://www.youtube.com/channel/UCohZYth9o6O_8UBeEagIhFA"><i class="bi bi-youtube"></i></a>
+                <a href="#"><i class="bi bi-youtube"></i></a>
                 <a href="#"><i class="bi bi-whatsapp"></i></a>
             </div>
         

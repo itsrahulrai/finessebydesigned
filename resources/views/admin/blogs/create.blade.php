@@ -243,17 +243,10 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
 <script>
-    ClassicEditor.create(document.querySelector('#editor'), {
-        toolbar: [
-            'heading', '|',
-            'bold', 'italic', 'link',
-            'bulletedList', 'numberedList', '|',
-            'insertTable', 'imageUpload', 'mediaEmbed', '|',
-            'undo', 'redo'
-        ]
+    new Jodit('#editor', {
+        height: 450,
+        placeholder: 'Start writing...'
     });
 </script>
 @endpush

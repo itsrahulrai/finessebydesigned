@@ -12,7 +12,7 @@ class BlogController extends Controller
         if ($request->filled('category')) {
             $query->whereHas('category', fn($q) => $q->where('slug', $request->category));
         }
-        $blogs      = $query->paginate(9)->withQueryString();
+        $blogs      = $query->paginate(6)->withQueryString();
         $categories = BlogCategory::withCount(['blogs' => fn($q) => $q->published()])->get();
         return view('frontend.blog.index', compact('blogs', 'categories'));
     }

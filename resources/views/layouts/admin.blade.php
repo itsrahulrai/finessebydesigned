@@ -88,8 +88,8 @@
         <a href="{{ route('admin.blogs.index') }}" class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
             <i class="bi bi-newspaper"></i> Blogs
         </a>
-         <a href="{{ route('admin.blog-categories.index') }}" class="nav-link {{ request()->routeIs('admin.blogs.*') ? 'active' : '' }}">
-            <i class="bi bi-newspaper"></i> Blog Category
+        <a href="{{ route('admin.blog-categories.index') }}" class="nav-link {{ request()->routeIs('admin.blog-categories.*') ? 'active' : '' }}">
+            <i class="bi bi-tags"></i> Blog Category
         </a>
         
         {{-- <a href="{{ route('admin.testimonials.index') }}" class="nav-link {{ request()->routeIs('admin.testimonials.*') ? 'active' : '' }}">

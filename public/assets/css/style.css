@@ -2255,6 +2255,108 @@ ABOUT PAGE
 }
 
 /* ============================================================
+   LUXURY BLOG LISTING & PAGINATION
+============================================================ */
+.luxury-blog-listing-section {
+    background: #F8FAFC;
+    position: relative;
+    padding: 35px 0 75px;
+    min-height: 70vh;
+}
+
+/* Luxury Pagination */
+.luxury-pagination-wrapper {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(148, 163, 184, 0.18);
+    width: 100%;
+}
+
+.luxury-pagination,
+.luxury-pagination-wrapper .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+.luxury-pagination .page-item,
+.luxury-pagination-wrapper .pagination .page-item {
+    margin: 0;
+}
+
+.luxury-pagination .page-item .page-link,
+.luxury-pagination-wrapper .pagination .page-item .page-link {
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px !important;
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    color: #475569;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    text-decoration: none;
+}
+
+.luxury-pagination .page-item .page-link:hover,
+.luxury-pagination-wrapper .pagination .page-item .page-link:hover {
+    background: #FFFFFF;
+    border-color: var(--kkt-primary, #0B6FAE);
+    color: var(--kkt-primary, #0B6FAE);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(11, 111, 174, 0.15);
+}
+
+.luxury-pagination .page-item.active .page-link,
+.luxury-pagination-wrapper .pagination .page-item.active .page-link {
+    background: var(--kkt-gradient, linear-gradient(135deg, #0A4F7D, #118CC4)) !important;
+    border-color: transparent !important;
+    color: #FFFFFF !important;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(11, 111, 174, 0.32) !important;
+    transform: translateY(-2px);
+}
+
+.luxury-pagination .page-item.disabled .page-link,
+.luxury-pagination-wrapper .pagination .page-item.disabled .page-link {
+    background: #F8FAFC;
+    border-color: #E2E8F0;
+    color: #94A3B8;
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.luxury-pagination-wrapper nav {
+    width: 100%;
+}
+
+.luxury-pagination-wrapper nav > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+@media (min-width: 576px) {
+    .luxury-pagination-wrapper nav > div:first-child {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* ============================================================
    LUXURY BLOG DETAILS PAGE (MATCHING SCREENSHOT)
 ============================================================ */
 .blog-details-section {
